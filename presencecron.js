@@ -13,7 +13,7 @@ function postpresenceflag (webhook, macid, presence){
 	requestify.request(webhook.concat("?presence"), {
     	method: 'POST',
     	body: {
-        	"Presence": presence,
+        	"presence": presence,
    			 },
     	headers: {
 
