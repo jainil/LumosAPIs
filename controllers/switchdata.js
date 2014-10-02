@@ -15,6 +15,7 @@ Deviceidentity.find({UUID: req.user._id, MACID: req.headers.macid}).exec(functio
       switchdata.SwitchType= req.body.SwitchType;
       switchdata.SwitchName= req.body.SwitchName;
       switchdata.SwitchPin= req.body.SwitchPin;
+      switchdata.SwitchAutoMode= true;
       switchdata.UUID= req.user._id;
       switchdata.webhook= deviceidentity[0].webhook;
       switchdata.RoomId=deviceidentity[0].RoomId;

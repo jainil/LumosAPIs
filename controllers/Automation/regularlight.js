@@ -51,7 +51,7 @@ exports.flagregularlight = function (switchdata) {
 			}
 			else if(switchdata.RoomId=="bedroom"){ //3 needs to be changed
 				if ((sensordata[0].Lumosity<3000) && (currenttime.getHours()<22 || currenttime.getHours()>7)
-					&&(switchdata[0].SwitchAutoMode.Auto == false)){
+					&&(switchdata.SwitchAutoMode == false)){
 					if((switchdata.SwitchFlag=="")||(switchdata.SwitchFlag[flagindex-1].switchflag !="true")){
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
@@ -150,7 +150,7 @@ exports.flagregularlight = function (switchdata) {
 				}
 			}
 			else if(switchdata.RoomId=="study"){ //9
-				if ((sensordata[0].Lumosity<3000) && (switchdata[0].SwitchAutoMode.Auto == false)){
+				if ((sensordata[0].Lumosity<3000) && (switchdata.SwitchAutoMode == false)){
 					if((switchdata.SwitchFlag=="")||(switchdata.SwitchFlag[flagindex-1].switchflag !="true")){
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
@@ -167,7 +167,7 @@ exports.flagregularlight = function (switchdata) {
 				}
 			}
 			else if(switchdata.RoomId=="dining"){ //10
-				if ((sensordata[0].Lumosity<3000) && (switchdata[0].SwitchAutoMode.Auto == false)){
+				if ((sensordata[0].Lumosity<3000) && (switchdata.SwitchAutoMode == false)){
 					if((switchdata.SwitchFlag=="")||(switchdata.SwitchFlag[flagindex-1].switchflag !="true")){
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
@@ -184,7 +184,7 @@ exports.flagregularlight = function (switchdata) {
 				}
 			}
 			else if(switchdata.RoomId=="stairs"){ //11
-				if ((sensordata[0].Lumosity<3000) && (switchdata[0].SwitchAutoMode.Auto == false)){
+				if ((sensordata[0].Lumosity<3000) && (switchdata.SwitchAutoMode == false)){
 					if((switchdata.SwitchFlag=="")||(switchdata.SwitchFlag[flagindex-1].switchflag !="true")){
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
@@ -201,7 +201,7 @@ exports.flagregularlight = function (switchdata) {
 				}
 			}
 			else if(switchdata.RoomId=="religionroom"){ //12
-				if ((sensordata[0].Lumosity<3000) && (switchdata[0].SwitchAutoMode.Auto == false)){
+				if ((sensordata[0].Lumosity<3000) && (switchdata.SwitchAutoMode == false)){
 					if((switchdata.SwitchFlag=="")||(switchdata.SwitchFlag[flagindex-1].switchflag !="true")){
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
