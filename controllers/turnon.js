@@ -58,7 +58,7 @@ exports.internalpostturnon = function(webhook,switchpin,onoff,trigger){
         	//username: 'foo',
         	//password: 'bar'
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});
 }
 
