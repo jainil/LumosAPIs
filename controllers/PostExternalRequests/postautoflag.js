@@ -20,6 +20,6 @@ exports.internalautoflag = function(webhook, autoflag, switchpin){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 }

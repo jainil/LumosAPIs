@@ -24,7 +24,7 @@ function postpresenceflag (webhook, macid, presence){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 };
 //compare and assign presence value to all devices

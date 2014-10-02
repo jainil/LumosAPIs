@@ -20,6 +20,6 @@ exports.internalpostlumosityflag = function(webhook, lumosityflag, switchpin){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 }

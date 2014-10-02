@@ -33,7 +33,7 @@ exports.webpostturnon = function(req,res){
     		},
     	auth: {
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});
     res.send("200");
 	};

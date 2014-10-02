@@ -21,6 +21,6 @@ exports.internalpostuserid = function(webhook, username, password){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 }

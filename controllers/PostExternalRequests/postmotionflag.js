@@ -20,6 +20,6 @@ exports.internalpostmotionflag = function(webhook, motionflag, switchpin){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 }

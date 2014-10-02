@@ -19,6 +19,6 @@ exports.internalpresenceflag = function(webhook, presence, switchpin){
     	auth: {
 
     		},
-    	dataType: 'json'        
+    	dataType: 'form-url-encoded'        
 			});	
 }
