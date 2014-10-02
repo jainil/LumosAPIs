@@ -75,13 +75,12 @@ Switch.find({UUID: req.user._id, SwitchPin: ((req.body.PinCurrent[i]).SwitchPin)
     });
   }
   else {
-    console.log("Switch Doesn't exist");
     switchcurrent(i+1);
   };
   });
 }
 else{
-      console.log("200");
+      res.send("200");
 };
 
 }
