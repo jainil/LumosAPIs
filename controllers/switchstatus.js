@@ -17,6 +17,8 @@ var pushdata = {switchstatus: req.body.switchstatus, Trigger: req.body.trigger, 
 		if (switchdata != ""){	
 		Switch.update({UUID: req.user._id, SwitchPin: parseInt(req.headers.switchpin), MACID: req.headers.macid}, 
 			{$push:{'Status':pushdata}},{upsert:true}, function(err, data) {
+				console.log("added");
+				console.log(err);
 				if ((req.body.trigger=="web")||(req.body.trigger=="manual")){
 				Switch.update({UUID: req.user._id, SwitchPin: parseInt(req.headers.switchpin), MACID: req.headers.macid}, 
 				{'SwitchAutoMode':"false"},{upsert:true}, function(err, data) { 
