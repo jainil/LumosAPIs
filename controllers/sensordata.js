@@ -59,7 +59,7 @@ Device.find({ UUID: req.user._id, MACID:req.headers.macid}).exec(function(err, d
 
 // Save the currentdata for every switch
   function switchcurrent(i, sensordata){
-    if(req.body.PinCurrent !=undefined){
+    if(req.body.PinCurrent !=""){
     if (i<(req.body.PinCurrent).length){
 Switch.find({UUID: req.user._id, SwitchPin: ((req.body.PinCurrent[i]).SwitchPin), MACID: req.headers.macid}).exec(function(err,switchdatalist){
   if(switchdatalist !=""){
@@ -80,7 +80,7 @@ Switch.find({UUID: req.user._id, SwitchPin: ((req.body.PinCurrent[i]).SwitchPin)
   });
 }
 else{
-      res.send("200");
+      console.log("200");
 };
 
 }
