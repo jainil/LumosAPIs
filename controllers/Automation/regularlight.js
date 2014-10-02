@@ -24,8 +24,8 @@ exports.flagregularlight = function (switchdata) {
 							if(err){console.log(err)};
 							console.log("awesome1");
 							});	
-					//motionflag.internalpostmotionflag(switchdata.webhook, "true", switchdata.switchpin);
-					//lumosityflag.internalpostlumosityflag(switchdata.webhook, "true", switchdata.switchpin);
+					motionflag.internalpostmotionflag(switchdata.webhook, "true", switchdata.switchpin);
+					lumosityflag.internalpostlumosityflag(switchdata.webhook, "true", switchdata.switchpin);
 					}
 					else{
 
@@ -226,8 +226,8 @@ exports.flagregularlight = function (switchdata) {
 							if(err){console.log(err)};
 							console.log("awesome-else");
 							});
-					//motionflag.internalpostmotionflag(switchdata.webhook, "off", switchdata.switchpin);
-					//lumosityflag.internalpostlumosityflag(switchdata.webhook, "true", switchdata.switchpin);
+					motionflag.internalpostmotionflag(switchdata.webhook, "off", switchdata.switchpin);
+					lumosityflag.internalpostlumosityflag(switchdata.webhook, "true", switchdata.switchpin);
 					}
 					else{
 					}

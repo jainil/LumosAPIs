@@ -19,7 +19,7 @@ exports.postswitchflag = function(switchdata){
 			regularlight.flagregularlight(switchdata);
 			}
 		else if(switchdata.SwitchType=="nightlamp"){
-			//nightlamp.flagnightlamp(switchdata);
+			nightlamp.flagnightlamp(switchdata);
 		}
 		else if(switchdata.SwitchType=="showpiecelamp"){
 			showpiecelamp.flagshowpiecelamp(switchdata);

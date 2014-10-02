@@ -27,7 +27,7 @@ function switchautoflag(i, switchdata){
                     switchautoflag(i+1, switchdata);
                   }
                   });
-          //autoflag.internalautoflag(switchdata.webhook, "false", switchdata.switchpin);
+          autoflag.internalautoflag(switchdata.webhook, "false", switchdata.switchpin);
               };
             };
             j=0;

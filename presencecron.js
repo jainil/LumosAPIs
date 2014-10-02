@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/LumosDatabase1');
 var Sensordata = require('./models/sensordata');
 var Device = require('./models/deviceidentity');
+var requestify = require('requestify');
 var Room = require('./models/roomdata');
 var flagontroller = require('./controllers/switchflag');
 var autoflag = require('./controllers/PostExternalRequests/postautoflag');
@@ -57,6 +58,7 @@ function presenceflag(i, device, j, devicedata, presencearray){
 			Room.update({UUID:sensordata[0].UUID, Roomid: devicedata[j].RoomId},{
 				$push:{'Presence':pushdata}},{upsert:true}, function(err, data) {
 					console.log(data);
+					postpresenceflag(devicedata[j].webhook,devicedata[j].MACID,presenceroom);
 				});
 
 			console.log(presenceroom);
