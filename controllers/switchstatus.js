@@ -19,7 +19,7 @@ var pushdata = {switchstatus: req.body.switchstatus, Trigger: req.body.trigger, 
 			{$push:{'Status':pushdata}},{upsert:true}, function(err, data) {
 				if ((req.body.trigger=="agent")||(req.body.trigger=="manual")){
 				Switch.update({UUID: req.user._id, SwitchPin: parseInt(req.headers.switchpin), MACID: req.headers.macid}, 
-				{'SwitchAutoMode':"true"},{upsert:true}, function(err, data){ 
+				{'SwitchAutoMode':"false"},{upsert:true}, function(err, data){ 
 				console.log("sexy")
 				if(err){console.log(err)}
 				else {
