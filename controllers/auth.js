@@ -15,17 +15,20 @@ passport.use(new BasicStrategy(
       // No user found with that username
       if (!user) { 
        // res.send("Invalid Username");
+       console.log("error username");
         return callback("Invalid Username", false); };
 
       // Make sure the password is correct
       user.verifyPassword(password, function(err, isMatch) {
         if (err) { 
          // res.send("Wrong Password");
+         console.log(err);
           return callback(err); };
 
         // Password did not match
         if (!isMatch) { 
          // res.send("password didn't match");
+         console.log("password didn't match")
           return callback("wrong password", false); }
 
         // Success
