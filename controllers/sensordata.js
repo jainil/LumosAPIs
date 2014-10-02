@@ -53,7 +53,7 @@ Device.find({ UUID: req.user._id, MACID:req.headers.macid}).exec(function(err, d
                       {res.send("500");
                       console.log(err);}
                       else {
-                      console.log({ message: 'Sensordata added to the list!'});};
+                      console.log({ message: 'Sensor added to the list!'});};
                       switchcurrent(0, sensordata);
                       });
               });
