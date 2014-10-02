@@ -10,6 +10,7 @@ var User = require('../models/useridentity');
 passport.use(new BasicStrategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
+      console.log(username, password);
       if (err) { return callback(err); }
 
       // No user found with that username
