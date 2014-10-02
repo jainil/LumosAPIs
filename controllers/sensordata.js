@@ -85,7 +85,7 @@ else{
 
 }
 else{
-  res.json({status: 200, Errortype: "Current data not supplied"});
+  console.log({status: 200, Errortype: "Current data not supplied"});
 };
 };
 }
