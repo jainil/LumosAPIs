@@ -8,7 +8,7 @@ var Switch = require('../models/switchdata');
 exports.webpostturnon = function(req,res){
 	var webhook;
 	var OnOff;
-	var trigger;
+	var Trigger;
 	Switch.find({UUID: req.user._id, SwitchPin: parseInt(req.headers.switchpin), MACID: req.headers.macid}).exec(function(err, switchdata){
 		if (err){
             console.log(err);
