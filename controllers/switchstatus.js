@@ -36,7 +36,7 @@ var pushdata = {switchstatus: req.body.switchstatus, Trigger: req.body.trigger, 
 		}
 		else{
 			res.send("500");
-			console.log("Switch Not Found");
+			console.log("Switch Found");
 		}
 		};
 });
