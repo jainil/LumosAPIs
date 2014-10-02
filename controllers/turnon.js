@@ -35,6 +35,7 @@ exports.webpostturnon = function(req,res){
     		},
     	dataType: 'json'        
 			});
+    res.send("200");
 	};
     });
 };
