@@ -49,7 +49,7 @@ Device.find({ UUID: req.user._id, MACID:req.headers.macid}).exec(function(err, d
   // Save the sensordata and check for errors
                     sensordata.save(function(err) {
                       if (err)
-                      {res.send("50");
+                      {res.send("500");
                       console.log(err);}
                       else {
                       console.log({ message: 'Sensordata added to the list!'});};
@@ -90,7 +90,7 @@ else{
 };
 }
 else {
-  res.send("509");
+  res.send("500");
   console.log("Device for sensor Not Found");
 };
 
