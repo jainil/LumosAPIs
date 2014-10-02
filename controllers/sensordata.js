@@ -91,7 +91,7 @@ else{
 }
 else {
   res.send("500");
-  console.log("Device Not Found");
+  console.log("Device for sensor Not Found");
 };
 
 });
