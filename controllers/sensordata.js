@@ -29,7 +29,7 @@ exports.postsensordata = function(req, res) {
 var sensordata = new Sensordata();
 
 Device.find({ UUID: req.user._id, MACID:req.headers.macid}).exec(function(err, devicedata){
-  console.log(req.body);
+  console.log("awesome");
           if(devicedata !=""){
             forecast.get(devicedata[0].Geocode, true, function(err, weather) {
                 if(err) { console.log(err)};
