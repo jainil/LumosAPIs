@@ -15,6 +15,7 @@ exports.webpostturnon = function(req,res){
             res.send("500");
         }
         else{
+            console.log(switchdata[0].webhook);
         webhook = (switchdata[0].webhook).concat("?switch");
 		OnOff = req.body.onoff;
 		Trigger = req.body.trigger;
@@ -23,7 +24,7 @@ exports.webpostturnon = function(req,res){
     	method: 'POST',
     	body: {
         	OnOff: OnOff,
-        	Trigger: trigger,
+        	Trigger: Trigger,
         	SwitchPin: switchpin
    			 },
     	headers: {
