@@ -7,6 +7,7 @@ var app = express();
 var Device = require('../models/deviceidentity');
 var Switch = require('../models/switchdata');
 var Forecast = require('forecast');
+var Email = require('./senderrormail.js');
 
 // Initialize forecast module
 var forecast = new Forecast({
@@ -51,7 +52,12 @@ Device.find({ UUID: req.user._id, MACID:req.headers.macid}).exec(function(err, d
                     sensordata.save(function(err) {
                       if (err)
                       {res.send("500");
-                      console.log(err);}
+                      console.log(err);
+                      Email.sendmail("Error in saving sensor data",JSON.stringify(err), function (error, body){
+                          if(error){console.log(error)};
+                          if(body){console.log(body)};
+                      });
+                      }
                       else {
                       console.log({ message: 'Sensor added to the list!'});};
                       switchcurrent(0, sensordata);
@@ -67,7 +73,12 @@ Switch.find({UUID: req.user._id, SwitchPin: ((req.body.PinCurrent[i]).SwitchPin)
       var pushdata = {Current: ((req.body.PinCurrent[i]).Current), Lastupdated: new Date().getTime()};
       Switch.update({UUID: req.user._id, SwitchPin: ((req.body.PinCurrent[i]).SwitchPin), MACID: req.headers.macid}, 
       {$push:{'SwitchCurrent':pushdata}},{upsert:true}, function(err, data) {
-        if(err){console.log(err)}
+        if(err){console.log(err);
+          Email.sendmail("Error in saving current data during storing sensordata",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+          }
         else {
            switchcurrent(i+1);
             }
@@ -103,7 +114,12 @@ exports.getsensordata = function(req, res) {
   Sensordata.find({MACID: req.headers.macid, UUID: req.user._id }, function(err, sensordata) { //check
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+      Email.sendmail("Error in retrieving sensordata",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else {
     res.json(sensordata);};
   });
@@ -115,7 +131,12 @@ exports.getsensordataentryid = function(req, res) {
   Sensordata.find({ UUID: req.user._id, _id: req.params._id }, function(err, sensordata) { //check
     if (err){
         console.log(err);
-        res.send("500");}
+        res.send("500");
+        Email.sendmail("Error in retrieving particular sensordata",JSON.stringify(err), function (error, body){
+              if(error){console.log(error)};
+              if(body){console.log(body)};
+              });
+        }
     else {
     res.json(sensordata);};
   });
@@ -139,7 +160,12 @@ exports.deletesensordataentryid = function(req, res) {
   Sensordata.remove({ UUID: req.user._id, _id: req.params._id }, function(err) {
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+          Email.sendmail("Error in deleting sensor data",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else {
     res.send("200");
     };

@@ -1,5 +1,6 @@
 // Load required packages
 var User = require('../models/useridentity');
+var Email = require('./senderrormail.js');
 
 // Create endpoint /api/useridentity for POST
 exports.postuseridentity = function(req, res) {
@@ -17,6 +18,10 @@ exports.postuseridentity = function(req, res) {
   user.save(function(err) {
     if (err)
       {console.log(err);
+        Email.sendmail("Error in saving user data",JSON.stringify(err), function (error, body){
+          if(error){console.log(error)};
+          if(body){console.log(body)};
+        });
         res.send("500")}
     else{
     res.send("200");
@@ -28,7 +33,11 @@ exports.postuseridentity = function(req, res) {
 exports.getuseridentity = function(req, res) {
   User.find(function(err, users) {
     if (err)
-      {res.send(err);}
+      {res.send(err);
+        Email.sendmail("Error in retrieving user data",JSON.stringify(err), function (error, body){
+          if(error){console.log(error)};
+          if(body){console.log(body)};
+        });}
     else
       {res.json(users);};
   });

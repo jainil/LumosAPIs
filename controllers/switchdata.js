@@ -2,6 +2,7 @@ var Deviceidentity = require('../models/deviceidentity');
 var Switch = require('../models/switchdata');
 var bodyParser = require('body-parser');
 var express = require('express');
+var Email = require('./senderrormail.js');
 var app = express();
 
 app.use(bodyParser.json());
@@ -25,7 +26,12 @@ switchdata.save(function(err) {
     
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+      Email.sendmail("Error in saving switchdata",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else {
     res.send("200");};
   //};
@@ -40,7 +46,12 @@ exports.getswitchdata = function(req, res) {
   Switch.find({UUID: req.user._id, MACID: req.headers.macid, SwitchPin: req.headers.switchpin}, function(err, switchdata) { //check
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+      Email.sendmail("Error in finding switch through switchdata.js",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else {
       res.json(switchdata);};
   });

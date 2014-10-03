@@ -6,6 +6,7 @@ var express = require('express');
 var app = express();
 var geocode = require('./latlong.js');
 var offset = require('./offsettime.js');
+var Email = require('./senderrormail.js');
 
 //var address = "address=382424"; 
 //'https://maps.googleapis.com/maps/api/timezone/json?location=23.6034810,88.6822510&timestamp=1331161200&key=AIzaSyC9tYV4xbXF-O_Gt79n1kTD-_HVZHOc1L8';
@@ -44,7 +45,12 @@ var coordinates = function(){
 deviceidentity.save(function(err) {
     if (err)
       {res.send("500");
-        console.log(err)}
+        console.log(err);
+      Email.sendmail("Error in saving device data",JSON.stringify(err), function (error, body){
+          if(error){console.log(error)};
+          if(body){console.log(body)};
+        });
+      }
     else{
     res.send("200");}
   });
@@ -63,7 +69,12 @@ Room.find({UUID:req.user._id, RoomId: req.body.RoomId}, function(err, data) {
             Roomdata.RoomId= req.body.RoomId;
             Roomdata.save(function(err){
               if (err)
-                {console.log(err)}
+                {console.log(err);
+                Email.sendmail("Error in saving room data",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+                }
               else {
                 console.log({ message: 'Device added to the list!', data: Roomdata });};
             });
@@ -77,7 +88,12 @@ exports.getdeviceidentity = function(req, res) {
   Deviceidentity.find({ UUID: req.user._id}, function(err, deviceidentity) { //check
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+      Email.sendmail("Error in retrieving device data",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else {
     res.json(deviceidentity);};
   });
@@ -89,7 +105,12 @@ exports.getdeviceidentityentryid = function(req, res) {
   Deviceidentity.find({ UUID: req.user._id, MACID: req.headers.macid }).exec (function(err, deviceidentity) { //check
     if (err)
       {res.send("500");
-      console.log(err);}
+      console.log(err);
+      Email.sendmail("Error in retrieving particular device data",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
     else{
       res.json(deviceidentity);};
 
@@ -114,6 +135,10 @@ exports.deletedeviceidentityentryid = function(req, res) {
   Deviceidentity.remove({_id:req.headers._id}, function(err) {
     if (err){
       console.log(err);
+      Email.sendmail("Error in deleting device data",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
       res.send("500");}
     else{
     res.send("200");};

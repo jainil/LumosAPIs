@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var requestify = require('requestify');
 var Switch = require('../models/switchdata');
+var Email = require('./senderrormail.js');
 
 exports.webpostturnon = function(req,res){
 	var webhook;
@@ -13,6 +14,10 @@ exports.webpostturnon = function(req,res){
 		if (err){
             console.log(err);
             res.send("500");
+            Email.sendmail("Error in finding switch during turn on",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
         }
         else{
             console.log(switchdata[0].webhook);

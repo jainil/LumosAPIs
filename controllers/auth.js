@@ -4,14 +4,18 @@ var passport2= require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var BasicStrategy2 = require('passport-http').BasicStrategy;
 var User = require('../models/useridentity');
-
+var Email = require('./senderrormail.js');
 
 
 passport.use(new BasicStrategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
-      console.log(username, password);
-      if (err) { return callback(err); }
+      if (err) { return callback(err); 
+          Email.sendmail("Error during authentication",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+        };
 
       // No user found with that username
       if (!user) { 

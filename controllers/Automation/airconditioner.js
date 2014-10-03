@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var Sensordata = require('../../models/sensordata');
 var Switch = require('../../models/switchdata');
+var Email = require('../../controllers/senderrormail.js');
 var motionflag = require('../../controllers/PostExternalRequests/postmotionflag');
 
 var currenttime = new Date();
@@ -18,7 +19,12 @@ exports.flagairconditioner = function (switchdata) {
 						var pushdata= {switchflag: "true", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
 							{$push:{'SwitchFlag':pushdata}},{upsert:true}, function(err, data) { 
-							if(err){res.send(err)};
+							if(err){res.send(err);
+					          Email.sendmail("Error in pushing switchflag in airconditioner.js",JSON.stringify(err), function (error, body){
+        				        if(error){console.log(error)};
+                				if(body){console.log(body)};
+              					});	
+					      };
 							console.log(data);
 							});
 					motionflag.internalpostmotionflag(switchdata.webhook, "true", switchdata.switchpin);
@@ -32,7 +38,11 @@ exports.flagairconditioner = function (switchdata) {
 						var pushdata2= {switchflag: "false", Lastupdated: new Date().getTime()};
 						Switch.update({UUID: switchdata.UUID, SwitchPin: parseInt(switchdata.SwitchPin), MACID: switchdata.MACID}, 
 							{$push:{'SwitchFlag':pushdata2}},{upsert:true}, function(err, data) { 
-							if(err){res.send(err)};
+							if(err){res.send(err);
+					          Email.sendmail("Error in pushing switchflag in airconditioner.js",JSON.stringify(err), function (error, body){
+        				        if(error){console.log(error)};
+                				if(body){console.log(body)};
+              					});	};
 							console.log(data);
 							});
 					motionflag.internalpostmotionflag(switchdata.webhook, "false", switchdata.switchpin);
