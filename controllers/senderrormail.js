@@ -5,7 +5,7 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 exports.sendmail = function (Subject, Text, callback){
 var data = {
   from: 'LumosServer <tarkeshwar@getlumos.co>',
-  to: 'tarkeshwar@getlumos.co',
+  to: 'tarkeshwar@getlumos.co, tarkeshwar.iitgn@gmail.com',
   subject: Subject,
   text: Text
 };
