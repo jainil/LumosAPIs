@@ -4,7 +4,7 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 var data = {
   from: 'LumosServer <tarkeshwar@getlumos.co>',
-  to: 'tarkeshwar@getlumos.co, sankherpritesh@gmail.com',
+  to: 'tarkeshwar@getlumos.co, sankherpritesh@gmail.com, tarkeshwar.iitgn@gmail.com',
   subject: 'Error at Server',
   text: 'Tis will happen if server has issues.'
 };
