@@ -118,6 +118,7 @@ exports.getroomlist = function(req, res) {
       res.json(roomresponselist);
     };
       }
+    console.log(roomlist);
       };
 
   });
