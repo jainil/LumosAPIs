@@ -55,7 +55,7 @@ function presenceflag(i, device, j, devicedata, presencearray){
 			};
 			var pushdata = {presence: presenceroom, Lastupdated: new Date().getTime()}
 
-			Room.update({UUID:sensordata[0].UUID, Roomid: devicedata[j].RoomId},{
+			Room.update({UUID:sensordata[0].UUID, RoomId: devicedata[j].RoomId},{
 				$push:{'Presence':pushdata}},{upsert:true}, function(err, data) {
 					console.log(data);
 					postpresenceflag(devicedata[j].webhook,devicedata[j].MACID,presenceroom);
