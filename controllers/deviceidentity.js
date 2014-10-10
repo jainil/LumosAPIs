@@ -111,7 +111,14 @@ exports.getroomlist = function(req, res) {
               });
       }
     else{
-      res.json(roomlist);};
+      var roomresponselist=[];
+      for (var i = roomlist.length - 1; i >= 0; i--) {
+        roomresponselist.push(roomlist[i].RoomId);
+      if(i==0){
+        console.log(roomresponselist);};
+      res.json(roomresponselist);
+      }
+      };
 
   });
 };
