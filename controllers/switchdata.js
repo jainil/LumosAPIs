@@ -57,6 +57,22 @@ exports.getswitchdata = function(req, res) {
   });
 };
 
+// Create endpoint /api/switchlist for GET
+exports.getswitchlist = function(req, res) {
+  // Use the Beer model to find all beer
+  Switch.find({UUID: req.user._id, MACID: req.headers.macid}, function(err, switchdata) { //check
+    if (err)
+      {res.send("500");
+      console.log(err);
+      Email.sendmail("Error in finding switches for a switch panel",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
+    else {
+      res.json(switchdata);};
+  });
+};
 
 // Create endpoint /api/sensordata for DELETE
 exports.deleteswitchdata = function(req, res){

@@ -99,20 +99,36 @@ exports.getdeviceidentity = function(req, res) {
   });
 };
 
-// Create endpoint /api/beers/:deviceidentityentryid for GET
-exports.getdeviceidentityentryid = function(req, res) {
-  // Use the Beer model to find a specific beer
-  Deviceidentity.find({ UUID: req.user._id, MACID: req.headers.macid }).exec (function(err, deviceidentity) { //check
+// Create endpoint for roomlist
+exports.getroomlist = function(req, res) {
+  Room.find({UUID: req.user._id}).exec (function(err, roomlist) { //check
     if (err)
       {res.send("500");
       console.log(err);
-      Email.sendmail("Error in retrieving particular device data",JSON.stringify(err), function (error, body){
+      Email.sendmail("Error in retrieving all rooms for a user",JSON.stringify(err), function (error, body){
                 if(error){console.log(error)};
                 if(body){console.log(body)};
               });
       }
     else{
-      res.json(deviceidentity);};
+      res.json(roomlist);};
+
+  });
+};
+
+// Create endpoint /api/beers/:deviceidentityentryid for GET
+exports.getroomwisepanellist = function(req, res) {
+  Deviceidentity.find({UUID: req.user._id, RoomId: req.headers.roomid}).exec (function(err, devicelist) { //check
+    if (err)
+      {res.send("500");
+      console.log(err);
+      Email.sendmail("Error in retrieving particular list of devices in one room",JSON.stringify(err), function (error, body){
+                if(error){console.log(error)};
+                if(body){console.log(body)};
+              });
+      }
+    else{
+      res.json(devicelist);};
 
   });
 };

@@ -38,18 +38,20 @@ router.route('/useridentity')
   .post(userController.postuseridentity)
   .get(authController.isAuthenticated, userController.getuseridentity);
 
+// 2.1. Create endpoint handlers to find all rooms for a user
+router.route('/roomlist')
+  .get(authController.isAuthenticated, deviceidentitycontroller.getroomlist);
 
-// 2.1. Create endpoint handlers for device identity management
+// 2.2. Create endpoint handlers for device identity management
 router.route('/deviceidentity')
   .post(authController.isAuthenticated, deviceidentitycontroller.postdeviceidentity)
   .get(authController.isAuthenticated, deviceidentitycontroller.getdeviceidentity)
   .delete(authController.isAuthenticated, deviceidentitycontroller.deletedeviceidentityentryid);
 
-// 2.2. Create endpoint handlers to retrieve a particular device identity
-router.route('/deviceidentity/:deviceidentityentryid')
-  .get(authController.isAuthenticated, deviceidentitycontroller.getdeviceidentityentryid)
+// 2.3. Create endpoint handlers to retrieve all switch panels in a particular room
+router.route('/roomdevices')
+  .get(authController.isAuthenticated, deviceidentitycontroller.getroomwisepanellist);
  // .put(authController.isAuthenticated, deviceidentitycontroller.putdeviceidentityentryid)
-  .delete(authController.isAuthenticated, deviceidentitycontroller.deletedeviceidentityentryid);
 
 //3. Create endpoint to turn on or turn off switches
 router.route('/webturnon')
@@ -62,6 +64,7 @@ router.route('/status')
   .get(authController.isAuthenticated, statuscontroller.getswitchstatus)
   .delete(authController.isAuthenticated, statuscontroller.deleteswitchstatus);
 
+
 /*/5. Create endpoint to communicate status of every single switch
 router.route('/autoflag')
   .post(authController.isAuthenticated, switchautoflagcontroller.postswitchautoflag)
@@ -71,6 +74,10 @@ router.route('/autoflag')
 router.route('/switchdata')
   .post(authController.isAuthenticated, switchdatacontroller.postswitchdata)
   .get(authController.isAuthenticated, switchdatacontroller.getswitchdata);
+
+//4.1 Create endpoint to retrive all switches for a switchpanel
+router.route('/switchlist')
+  .get(authController.isAuthenticated, switchdatacontroller.getswitchlist);
 
 /*/7. Create endpoint to communicate flag status which decides what to do with every switch
 router.route('/statusflag') //motionflag
