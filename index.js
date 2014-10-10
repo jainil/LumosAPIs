@@ -9,6 +9,7 @@ var onoffcontroller = require('./controllers/turnon');
 var statuscontroller = require('./controllers/switchstatus');
 var switchdatacontroller = require('./controllers/switchdata')
 var switchflagcontroller = require('./controllers/switchflag');
+var powercontroller = require('./controllers/poweranalytics');
 var passport = require('passport');
 var authController = require('./controllers/auth');
 //var authsensor = require('./controllers/authsensor');
@@ -86,12 +87,11 @@ router.route('/sensordata/:sensordataentryid')
   .get(authController.isAuthenticated, sensordataController.getsensordataentryid)
  // .put(authController.isAuthenticated, beerController.putBeer)
   .delete(authController.isAuthenticated, sensordataController.deletesensordataentryid);
-/*
+
 //9. Create endpoint to communicate poweranalytics of every single switch
 router.route('/poweranalytics')
-  .post(userController.postUsers)
-  .get(authController.isAuthenticated, userController.getUsers);
-
+  .get(authController.isAuthenticated, powercontroller.currentdata);
+/*
 //10. Create endpoint to communicate change of temperature to a.c or fan swtiches
 router.route('/changetemp')
   .post(userController.postUsers)
